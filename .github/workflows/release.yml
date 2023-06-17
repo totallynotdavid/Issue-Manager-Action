@@ -18,7 +18,9 @@ jobs:
           node-version: 18
 
       - name: Build action
-        run: ./build.sh
+        run: |
+          chmod +x ./build.sh
+          ./build.sh
 
       - name: Release action
         uses: softprops/action-gh-release@v1
