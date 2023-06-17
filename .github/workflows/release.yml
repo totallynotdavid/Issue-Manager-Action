@@ -1,0 +1,27 @@
+name: Build and release
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Package Action for release
+      run: |
+        mkdir -p dist
+        cp -r node_modules dist/node_modules
+        cp -r *.js dist
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: dist
+        path: dist
