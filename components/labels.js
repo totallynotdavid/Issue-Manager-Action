@@ -1,5 +1,5 @@
 async function updateLabels(issue, octokit) {
-    let labelsToAdd = ['documentación'];
+    let labelsToAdd = ['documentación', 'contenido'];
 
     if (!issue.assignee) {
         labelsToAdd.push('ayuda');
