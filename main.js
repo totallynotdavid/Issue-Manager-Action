@@ -1,6 +1,6 @@
 const { Octokit } = require('@octokit/rest');
 const octokit = new Octokit({
-    auth: process.env.ISSUE_TOKEN,
+    auth: process.env.ISSUE_TOKEN, // eslint-disable-line no-undef
 });
 
 const updateIssue = require('./components/body').updateIssue;

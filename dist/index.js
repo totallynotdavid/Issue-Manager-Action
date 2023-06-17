@@ -49,7 +49,7 @@ async function updateIssue(issue, octokit) {
             owner: 'caefisica',
             repo: 'web',
             issue_number: issue.number,
-            body: `¡Hola! Actualizamos este GitHub Issue al formato de nuestra nueva plantilla estandarizada. Esto mejora la gestión y priorización de los problemas. Conservamos tus tareas completadas. Puedes revisar la nueva estructura [aquí](https://github.com/caefisica/web/blob/master/.github/ISSUE_TEMPLATE/plantilla_de_cursos.yml).\n\n<img src="https://media.tenor.com/t8ZbssN1A9kAAAAd/momo-twice.gif" height="250"/>`,
+            body: '¡Hola! Actualizamos este GitHub Issue al formato de nuestra nueva plantilla estandarizada. Esto mejora la gestión y priorización de los problemas. Conservamos tus tareas completadas. Puedes revisar la nueva estructura [aquí](https://github.com/caefisica/web/blob/master/.github/ISSUE_TEMPLATE/plantilla_de_cursos.yml).\n\n<img src="https://media.tenor.com/t8ZbssN1A9kAAAAd/momo-twice.gif" height="250"/>',
         });
 
     } catch (err) {
@@ -19927,7 +19927,7 @@ var __webpack_exports__ = {};
 (() => {
 const { Octokit } = __nccwpck_require__(5274);
 const octokit = new Octokit({
-    auth: process.env.ISSUE_TOKEN,
+    auth: process.env.ISSUE_TOKEN, // eslint-disable-line no-undef
 });
 
 const updateIssue = (__nccwpck_require__(9864).updateIssue);
