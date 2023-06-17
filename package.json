@@ -4,8 +4,11 @@
   "description": "A GitHub Action to manage issues in the CAE-Física repository",
   "main": "manage-issues.js",
   "scripts": {
+    "start": "node main.js",
+    "clean": "shx rm -rf node_modules package-lock.json",
     "lint": "eslint --ext .js main.js components/",
-    "lint:fix": "eslint --fix --ext .js main.js components/"
+    "lint:fix": "eslint --fix --ext .js main.js components/",
+    "dist": "ncc build main.js --license licenses.txt"
   },
   "keywords": [
     "github",
@@ -22,11 +25,7 @@
     "js-yaml": "^4.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.5",
-    "@babel/preset-env": "^7.22.5",
-    "babel-loader": "^9.1.2",
     "eslint": "^8.43.0",
-    "webpack": "^5.87.0",
-    "webpack-cli": "^5.1.4"
+    "shx": "^0.3.4"
   }
 }
