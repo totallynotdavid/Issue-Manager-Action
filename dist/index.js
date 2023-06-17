@@ -49,9 +49,7 @@ async function updateIssue(issue, octokit) {
             owner: 'caefisica',
             repo: 'web',
             issue_number: issue.number,
-            body: `¡Hola! Actualizamos este problema al formato de nuestra nueva plantilla estandarizada. Esto mejora la gestión y priorización de los problemas. Conservamos tus tareas completadas. Puedes revisar la nueva estructura [aquí](https://github.com/caefisica/web/blob/master/.github/ISSUE_TEMPLATE/plantilla_de_cursos.yml).
-            
-            ![MomoBot Gif](https://media.tenor.com/t8ZbssN1A9kAAAAd/momo-twice.gif)`,
+            body: `¡Hola! Actualizamos este problema al formato de nuestra nueva plantilla estandarizada. Esto mejora la gestión y priorización de los problemas. Conservamos tus tareas completadas. Puedes revisar la nueva estructura [aquí](https://github.com/caefisica/web/blob/master/.github/ISSUE_TEMPLATE/plantilla_de_cursos.yml).\n\n<img src="https://media.tenor.com/t8ZbssN1A9kAAAAd/momo-twice.gif" height="250"/>`,
         });
 
     } catch (err) {
@@ -69,7 +67,7 @@ module.exports = {
 /***/ ((module) => {
 
 async function updateLabels(issue, octokit) {
-    let labelsToAdd = ['documentación'];
+    let labelsToAdd = ['documentación', 'contenido'];
 
     if (!issue.assignee) {
         labelsToAdd.push('ayuda');
