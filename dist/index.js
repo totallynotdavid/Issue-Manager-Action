@@ -19929,7 +19929,7 @@ var __webpack_exports__ = {};
 (() => {
 const { Octokit } = __nccwpck_require__(5274);
 const octokit = new Octokit({
-    auth: process.env.GITHUB_TOKEN,
+    auth: process.env.ISSUE_TOKEN,
 });
 
 const updateIssue = (__nccwpck_require__(9864).updateIssue);
