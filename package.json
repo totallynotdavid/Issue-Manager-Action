@@ -1,0 +1,22 @@
+{
+  "name": "issue-manager-action",
+  "version": "1.0.0",
+  "description": "A GitHub Action to manage issues in the CAE-Física repository",
+  "main": "manage-issues.js",
+  "scripts": {
+    "lint": "eslint --ext .js main.js components/",
+    "lint:fix": "eslint --fix --ext .js main.js components/"
+  },
+  "keywords": ["github", "actions", "issue", "management"],
+  "author": "David Duran",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/auth-token": "^4.0.0",
+    "@octokit/rest": "^19.0.13",
+    "axios": "^1.4.0",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.43.0"
+  }
+}

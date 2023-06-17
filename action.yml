@@ -1,0 +1,16 @@
+name: 'Issue Manager Action'
+description: 'An action to manage issues in your repository'
+author: 'David Duran'
+inputs:
+  GITHUB_TOKEN:
+    description: 'The GitHub token used to authenticate with the GitHub API'
+    required: true
+  ASSIGNEES:
+    description: 'List of team members to distribute issue assignments to. Separate with commas, no spaces'
+    required: true
+  MAINTAINER:
+    description: 'The maintainer to tag for stagnant feature issues'
+    required: true
+runs:
+  using: 'node16'
+  main: 'main.js'
