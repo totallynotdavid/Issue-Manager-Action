@@ -20,6 +20,7 @@ jobs:
         mkdir -p dist
         cp -r node_modules dist/node_modules
         cp -r *.js dist
+        cp -r components dist/components
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
