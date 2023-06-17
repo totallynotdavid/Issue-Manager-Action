@@ -1,4 +1,4 @@
-name: Release Action
+name: Publicar release
 on:
   workflow_dispatch:
   push:
