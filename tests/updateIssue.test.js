@@ -5,10 +5,10 @@ jest.mock('axios');
 jest.mock('octokit');
 
 describe('updateIssue', () => {
-  it('should correctly format the issue according to the template', async () => {
-    const mockIssue = {
-      number: 123,
-      body: `### Pasos
+    it('should correctly format the issue according to the template', async () => {
+        const mockIssue = {
+            number: 123,
+            body: `### Pasos
 
 - [ ] Temas, detallar qué temas se desarrollan en el curso
 - [X] Libros teóricos, junto a comentarios de los motivos de la recomendación
@@ -23,11 +23,11 @@ Termodinámica
 ### Código
 
 CFO604`
-    };
+        };
 
-    await updateIssue(mockIssue, { issues });
+        await updateIssue(mockIssue, { issues });
 
-    const expectedBody = `### Pasos
+        const expectedBody = `### Pasos
 
 - [ ] Información (nombre, código y créditos)
 - [ ] Descripción del curso (objetivos y contenido)
@@ -54,9 +54,9 @@ Termodinámica
 
 CFO604`;
 
-    expect(issues.update).toHaveBeenCalledWith(expect.objectContaining({
-      body: expectedBody
-    }));
-  });
+        expect(issues.update).toHaveBeenCalledWith(expect.objectContaining({
+            body: expectedBody
+        }));
+    });
 
 });
