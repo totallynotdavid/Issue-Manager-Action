@@ -50,12 +50,29 @@ function extractInputSection(issueBody, section) {
     return `### ${section.attributes.label}\n\n${sectionData}\n\n`;
 }
 
+function calculateTaskDifferences(oldBody, newBody) {
+    const oldTasks = oldBody.match(/- \[[xX\s]\] .+/gi) || [];
+    const newTasks = newBody.match(/- \[[xX\s]\] .+/gi) || [];
+
+    const addedTasks = newTasks.filter(task => !oldTasks.includes(task));
+    const deletedTasks = oldTasks.filter(task => !newTasks.includes(task));
+    const unchangedTasks = oldTasks.filter(task => newTasks.includes(task));
+
+    return {
+        added: addedTasks.length,
+        deleted: deletedTasks.length,
+        unchanged: unchangedTasks.length
+    };
+}
+
 async function updateIssue(issue, octokit) {
     try {
         const template = await fetchTemplate();
         const newBody = template.body.map(section => extractIssueSections(issue.body, section)).join('').trim();
 
         if (issue.body.trim() !== newBody) {
+            const totalTasksUpdated = calculateTaskDifferences(issue.body, newBody);
+
             await octokit.issues.update({
                 owner: config.org,
                 repo: config.repo,
@@ -68,7 +85,12 @@ async function updateIssue(issue, octokit) {
                 owner: config.org,
                 repo: config.repo,
                 issue_number: issue.number,
-                body: `¡Hola! Hemos hecho algunas actualizaciones a este Issue en base a nuestra nueva plantilla estandarizada. Puedes revisar los cambios [aquí](https://github.com/caefisica/web/blob/master/.github/ISSUE_TEMPLATE/plantilla_de_cursos.yml).\n\n<img src="${config.gifURL}" height="250"/>`,
+                body: `¡Hola! Hemos hecho algunas actualizaciones a este Issue:
+- Añadido: ${totalTasksUpdated.added} tareas
+- Eliminado: ${totalTasksUpdated.deleted} tareas
+- Sin cambios: ${totalTasksUpdated.unchanged} tareas
+
+Revisa la nueva plantilla [aquí](${config.issueTemplateURL}).\n<img src="${config.gifURL}" height="250"/>`,
             });
         } else {
             console.log(`No changes required for issue #${issue.number}`);
