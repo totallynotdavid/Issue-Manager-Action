@@ -4,10 +4,10 @@ const config = require('../config');
 
 async function fetchTemplate() {
     try {
-        const response = await axios.get(config.issueTemplateURL);
+        const response = await axios.get(config.rawIssueTemplateURL);
         return yaml.load(response.data);
     } catch (error) {
-        throw new Error('Failed to fetch template', error);
+        throw new Error(`Failed to fetch template from ${config.rawIssueTemplateURL}: ${error.message}`);
     }
 }
 
@@ -80,4 +80,5 @@ async function updateIssue(issue, octokit) {
 
 module.exports = {
     updateIssue,
+    fetchTemplate
 };
