@@ -21,7 +21,7 @@ describe('updateIssue', () => {
     });
 
     beforeEach(() => {
-      jest.clearAllMocks();
+        jest.clearAllMocks();
     });
 
     test('should not attempt to update issues that already follow the template', async () => {

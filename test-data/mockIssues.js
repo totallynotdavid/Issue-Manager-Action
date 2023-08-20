@@ -1,8 +1,8 @@
 module.exports = [
-  /* Caso donde las tareas ya no coinciden con las tareas actuales */
-  {
-    number: 123,
-    body: `### Pasos
+    /* Caso donde las tareas ya no coinciden con las tareas actuales */
+    {
+        number: 123,
+        body: `### Pasos
 
 - [ ] Temas, detallar qué temas se desarrollan en el curso
 - [X] Libros teóricos, junto a comentarios de los motivos de la recomendación
@@ -17,11 +17,11 @@ Termodinámica
 ### Código
 
 CFO604`
-  },
-  /* Caso donde algunas tareas coinciden con las tareas actualizadas y están terminadas */
-  {
-    number: 1234,
-    body: `### Pasos
+    },
+    /* Caso donde algunas tareas coinciden con las tareas actualizadas y están terminadas */
+    {
+        number: 1234,
+        body: `### Pasos
 
 - [ ] Temas, detallar qué temas se desarrollan en el curso
 - [ ] Libros teóricos, junto a comentarios de los motivos de la recomendación
@@ -36,11 +36,11 @@ Termodinámica
 ### Código
 
 CFO604`
-  },
-  /* Caso donde solo hay una tarea completada */
-  {
-    number: 123,
-    body: `### Pasos
+    },
+    /* Caso donde solo hay una tarea completada */
+    {
+        number: 123,
+        body: `### Pasos
 
 - [X] Temas (mínimo 4)
 
@@ -51,11 +51,11 @@ Termodinámica
 ### Código
 
 CFO604`
-  },
-  /* Caso donde solo hay una tarea sin completar */
-  {
-    number: 123,
-    body: `### Pasos
+    },
+    /* Caso donde solo hay una tarea sin completar */
+    {
+        number: 123,
+        body: `### Pasos
 
 - [ ] Temas (mínimo 4)
 
@@ -66,5 +66,5 @@ Termodinámica
 ### Código
 
 CFO604`
-  }
-]
+    }
+];

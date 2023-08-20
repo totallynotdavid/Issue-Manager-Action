@@ -1,5 +1,5 @@
 module.exports = [
-  `### Pasos
+    `### Pasos
 
 - [ ] Información (nombre, código y créditos)
 - [ ] Descripción del curso (objetivos y contenido)
@@ -25,7 +25,7 @@ Termodinámica
 ### Código
 
 CFO604`,
-  `### Pasos
+    `### Pasos
 
 - [ ] Información (nombre, código y créditos)
 - [ ] Descripción del curso (objetivos y contenido)
@@ -51,7 +51,7 @@ Termodinámica
 ### Código
 
 CFO604`,
-  `### Pasos
+    `### Pasos
 
 - [ ] Información (nombre, código y créditos)
 - [ ] Descripción del curso (objetivos y contenido)
@@ -77,7 +77,7 @@ Termodinámica
 ### Código
 
 CFO604`,
-  `### Pasos
+    `### Pasos
 
 - [ ] Información (nombre, código y créditos)
 - [ ] Descripción del curso (objetivos y contenido)

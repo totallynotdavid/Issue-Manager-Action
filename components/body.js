@@ -13,12 +13,12 @@ async function fetchTemplate() {
 
 function extractIssueSections(issueBody, section) {
     switch (section.type) {
-        case 'checkboxes':
-            return extractCheckboxSection(issueBody, section);
-        case 'input':
-            return extractInputSection(issueBody, section);
-        default:
-            return '';
+    case 'checkboxes':
+        return extractCheckboxSection(issueBody, section);
+    case 'input':
+        return extractInputSection(issueBody, section);
+    default:
+        return '';
     }
 }
 

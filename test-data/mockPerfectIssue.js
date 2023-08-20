@@ -1,5 +1,5 @@
 module.exports = [
-  `### Pasos
+    `### Pasos
 
 - [ ] Información (nombre, código y créditos)
 - [ ] Descripción del curso (objetivos y contenido)
