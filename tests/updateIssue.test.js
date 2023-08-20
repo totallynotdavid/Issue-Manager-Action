@@ -13,7 +13,7 @@ describe('updateIssue', () => {
         expectedBody: expectedBodies[index]
     }));
 
-    test.each(testCases)('should correctly format the issue according to the template', async ({ mockIssue, expectedBody }) => {
+    test.each(testCases)('el issue debería de seguir el formato de la plantilla', async ({ mockIssue, expectedBody }) => {
         await updateIssue(mockIssue, { issues });
         expect(issues.update).toHaveBeenCalledWith(expect.objectContaining({
             body: expectedBody
@@ -24,19 +24,14 @@ describe('updateIssue', () => {
         jest.clearAllMocks();
     });
 
-    test('should not attempt to update issues that already follow the template', async () => {
+    test('no se debería de intentar actualizar el issue si no hubo cambios', async () => {
         const mockIssueThatFollowsTemplate = {
             body: mockPerfectIssue[0],
         };
 
         const newBody = await updateIssue(mockIssueThatFollowsTemplate, { issues });
 
-        if (mockIssueThatFollowsTemplate.body.trim() !== newBody) {
-            console.log('This issue does not follow the template, although it shouldn\'t be updated');
-        } else {
-            console.log('This issue follows the template, so it shouldn\'t be updated');
-        }
-
+        expect(mockIssueThatFollowsTemplate.body.trim()).toEqual(newBody);
         expect(issues.update).not.toHaveBeenCalled();
     });
 
