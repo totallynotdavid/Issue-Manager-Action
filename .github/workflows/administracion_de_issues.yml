@@ -9,8 +9,8 @@ on:
       - opened
 
 jobs:
-  MomoBot:
-    name: 🤖 MomoBot
+  issueBot:
+    name: 🤖 issueBot para GH Issues
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -22,10 +22,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Administración de Issues
-        uses: totallynotdavid/Issue-Manager-Action@v3.0.6
+
+      - name: Actualizar GH Issues
+        uses: totallynotdavid/Issue-Manager-Action@latest
         with:
-          GITHUB_TOKEN: ${{ secrets.ISSUE_TOKEN }}
-          MAINTAINER: 'totallynotdavid'
+          org: 'totallynotdavid'
+          repo: 'Issue-Manager-Action'
+          branch: 'master'
+          template_name: 'mock_template.yml'
+          issue_prefix: '[📚]:'
+          gif_url: 'https://media.tenor.com/t8ZbssN1A9kAAAAd/momo-twice.gif'
         env:
           ISSUE_TOKEN: ${{ secrets.ISSUE_TOKEN }}
