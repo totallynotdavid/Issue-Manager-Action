@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node main.js",
     "clean": "shx rm -rf node_modules package-lock.json",
-    "lint": "eslint --ext .js main.js components/ tests/ test-data/",
-    "lint:fix": "eslint --fix --ext .js main.js components/ tests/ test-data/",
+    "lint": "eslint --ext .js . config.js components/ tests/ test-data/",
+    "lint:fix": "eslint --fix --ext .js . config.js components/ tests/ test-data/",
     "dist": "ncc build main.js --license licenses.txt",
     "test": "jest"
   },
