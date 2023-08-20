@@ -95,6 +95,7 @@ Revisa la nueva plantilla [aquí](${config.issueTemplateURL}).\n<img src="${conf
         } else {
             console.log(`No changes required for issue #${issue.number}`);
         }
+        return newBody;
     } catch (err) {
         console.error(`Failed to update issue #${issue.number}`, err);
     }
