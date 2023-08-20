@@ -7,7 +7,7 @@ async function fetchTemplate() {
         const response = await axios.get(config.rawIssueTemplateURL);
         return yaml.load(response.data);
     } catch (error) {
-        throw new Error(`Failed to fetch template from ${config.rawIssueTemplateURL}: ${error.message}`);
+        throw new Error(`No se pudo obtener la plantilla de ${config.rawIssueTemplateURL}: ${error.message}`);
     }
 }
 
@@ -93,11 +93,11 @@ async function updateIssue(issue, octokit) {
 Revisa la nueva plantilla [aquí](${config.issueTemplateURL}).\n<img src="${config.gifURL}" height="250"/>`,
             });
         } else {
-            console.log(`No changes required for issue #${issue.number}`);
+            console.log(`Sin cambios requeridos para el issue #${issue.number}`);
         }
         return newBody;
     } catch (err) {
-        console.error(`Failed to update issue #${issue.number}`, err);
+        console.error(`No se pudo actualizar el issue #${issue.number}`, err);
     }
 }
 
