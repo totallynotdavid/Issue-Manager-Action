@@ -1,38 +1,50 @@
-# Issue Manager Action
+# Gestión de Github Issues
 
-This is a GitHub Action developed specifically for internal use within the CAE-Física organization. Please note that this action may not be suitable or work correctly for other use cases.
+La acción escanea los issues de un repositorio especificado y actualiza su contenido y etiquetas basándose en una plantilla predefinida en la carpeta `ISSUE_TEMPLATE` del repositorio. Utilizamos Octokit para interactuar con la API de GitHub.
 
-## Description
+*Nota*: Esta acción se creó específicamente para el uso interno de la organización @caefisica.
 
-The CAE-Física GitHub Action is designed to automate certain tasks related to managing issues in the CAE-Física organization's web repository. The action scans the repository's issues and performs specific actions on issues that have a title starting with '[📚]:'.
+## Características
 
-The action uses the Octokit library to interact with the GitHub API. It requires authentication using a GITHUB_TOKEN provided by GitHub.
+- Identifica issues basados en un prefijo configurable.
+- Actualiza el cuerpo y los labels del issue de acuerdo a la plantilla especificada.
+- Evita el exceso de solicitudes añadiendo un retraso de 1000 milisegundos entre operaciones.
 
-## Features
+## Parámetros configurables
 
-- Identifies issues with titles starting with '[📚]:'.
-- Updates the issue body using the updateIssue component.
-- Updates labels on the issue using the updateLabels component.
-- Includes a delay of 1000 milliseconds between issue processing to avoid rate limits.
+- `org`: Organización de GitHub.
+- `repo`: Repositorio donde se ejecuta la acción.
+- `branch`: Rama del repositorio donde se encuentra la plantilla.
+- `templateName`: Nombre de la plantilla a utilizar.
+- `issuePrefix`: Prefijo para identificar los issues que deben ser procesados.
+- `gifURL`: URL de un GIF para ser añadido en comentarios.
 
-## Usage
+## Uso
 
-To use the CAE-Física GitHub Action in your workflow, you need to add a step with the following configuration in your workflow file (e.g., .github/workflows/my-workflow.yml):
+Añade el siguiente paso en tu `workflow` (ejemplo: .github/workflows/mi-flujo-de-trabajo.yml):
 
 ```yaml
-name: My Workflow
+name: Workflow de ejemplo
 
 on:
-  # Add your desired workflow triggers here
+  schedule:
+    - cron: "\* \* 1 \* \*"
 
 jobs:
-  my-job:
-    name: My Job
+  mi-trabajo:
+    name: Administración de Issues
     runs-on: ubuntu-latest
 
     steps:
-      - name: Issue Management
+      - name: Administración de Issues
         uses: totallynotdavid/Issue-Manager-Action
+        with:
+          org: 'tu-organizacion'
+          repo: 'tu-repositorio'
+          branch: 'tu-rama'
+          templateName: 'nombre-de-tu-plantilla'
+          issuePrefix: 'tu-prefijo'
+          gifURL: 'url-de-tu-gif'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
