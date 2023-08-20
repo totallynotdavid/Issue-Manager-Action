@@ -1,14 +1,17 @@
+const core = require("@actions/core");
+
 module.exports = {
-  org: 'caefisica',
-  repo: 'web',
-  branch: 'master',
-  templateName: 'plantilla_de_cursos.yml',
+  org: core.getInput("org"),
+  repo: core.getInput("repo"),
+  branch: core.getInput("branch"),
+  templateName: core.getInput("templateName"),
+  issuePrefix: core.getInput("issuePrefix"),
+  gifURL: core.getInput("gifURL"),
+
   get issueTemplateURL() {
       return `https://github.com/${this.org}/${this.repo}/blob/${this.branch}/.github/ISSUE_TEMPLATE/${this.templateName}`;
   },
   get rawIssueTemplateURL() {
       return `${this.issueTemplateURL}?raw=true`;
-  },
-  issuePrefix: '[📚]:',
-  gifURL: 'https://media.tenor.com/t8ZbssN1A9kAAAAd/momo-twice.gif'
+  }
 };

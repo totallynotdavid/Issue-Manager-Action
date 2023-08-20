@@ -79,18 +79,22 @@ async function updateIssue(issue, octokit) {
                 issue_number: issue.number,
                 body: newBody
             });
-
-            console.log(`Updated issue #${issue.number}`);
-            await octokit.issues.createComment({
-                owner: config.org,
-                repo: config.repo,
-                issue_number: issue.number,
-                body: `¡Hola! Hemos hecho algunas actualizaciones a este Issue:
+            console.log(`✅ Isuee #${issue.number} actualizado`);
+            
+            const commentBody = `¡Hola! Hemos hecho algunas actualizaciones a este Issue:
 - Añadido: ${totalTasksUpdated.added} tareas
 - Eliminado: ${totalTasksUpdated.deleted} tareas
 - Sin cambios: ${totalTasksUpdated.unchanged} tareas
 
-Revisa la nueva plantilla [aquí](${config.issueTemplateURL}).\n<img src="${config.gifURL}" height="250"/>`,
+Revisa la nueva plantilla [aquí](${config.issueTemplateURL}).`;
+
+            const gifMarkup = (config.useGif && config.gifURL) ? `\n<img src="${config.gifURL}" height="250"/>` : '';
+
+            await octokit.issues.createComment({
+                owner: config.org,
+                repo: config.repo,
+                issue_number: issue.number,
+                body: commentBody + gifMarkup,
             });
         } else {
             console.log(`Sin cambios requeridos para el issue #${issue.number}`);
