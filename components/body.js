@@ -1,6 +1,7 @@
 const axios = require('axios');
 const yaml = require('js-yaml');
 const config = require('../config');
+const { generateComment } = require('./comment');
 
 async function fetchTemplate() {
     try {
@@ -79,22 +80,13 @@ async function updateIssue(issue, octokit) {
                 issue_number: issue.number,
                 body: newBody
             });
-            console.log(`✅ Isuee #${issue.number} actualizado`);
-            
-            const commentBody = `¡Hola! Hemos hecho algunas actualizaciones a este Issue:
-- Añadido: ${totalTasksUpdated.added} tareas
-- Eliminado: ${totalTasksUpdated.deleted} tareas
-- Sin cambios: ${totalTasksUpdated.unchanged} tareas
-
-Revisa la nueva plantilla [aquí](${config.issueTemplateURL}).`;
-
-            const gifMarkup = (config.useGif && config.gifURL) ? `\n<img src="${config.gifURL}" height="250"/>` : '';
+            console.log(`✅ Issue #${issue.number} actualizado`);
 
             await octokit.issues.createComment({
                 owner: config.org,
                 repo: config.repo,
                 issue_number: issue.number,
-                body: commentBody + gifMarkup,
+                body: generateComment(totalTasksUpdated),
             });
         } else {
             console.log(`Sin cambios requeridos para el issue #${issue.number}`);
