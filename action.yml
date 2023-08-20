@@ -1,19 +1,35 @@
 name: 'Issue Manager Action'
-description: 'An action to manage issues in your repository'
-author: 'David Duran'
+description: 'Automates certain tasks related to managing issues for CAE-Física.'
+author: 'totallynotdavid'
+
 inputs:
-  GITHUB_TOKEN:
-    description: 'The GitHub token used to authenticate with the GitHub API'
+  org:
+    description: 'GitHub Organization'
     required: true
-  ASSIGNEES:
-    description: 'List of team members to distribute issue assignments to. Separate with commas, no spaces'
+  repo:
+    description: 'GitHub Repository'
     required: true
-  MAINTAINER:
-    description: 'The maintainer to tag for stagnant feature issues'
+  branch:
+    description: 'Branch where ISSUE_TEMPLATE is located'
     required: true
+  templateName:
+    description: 'Name of the issue template'
+    required: true
+  issuePrefix:
+    description: 'Prefix for the issue'
+    required: true
+  gifURL:
+    description: 'URL of the gif to embed in comments'
+    required: false
+  useGif:
+    description: 'Decide if gifURL should be used. Provide true or false.'
+    required: true
+    default: 'true'
+
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
+
 branding:
   icon: 'activity'
   color: 'black'

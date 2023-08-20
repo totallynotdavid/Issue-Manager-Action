@@ -1,0 +1,88 @@
+name: 📦 Publicar una nueva versión
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout el repositorio
+      uses: actions/checkout@v3
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+
+    - name: Configurar git para commits
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+
+    - name: Instalar Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Instalar dependencias
+      run: npm install
+
+    - name: Compilar un nuevo dist/
+      run: npm run dist
+
+    - name: Agregar cambios de dist/
+      run: |
+        git diff --exit-code --quiet dist/ || (git add dist/ && git commit -m "chore: build dist")
+
+    - name: Crear nueva versión y actualizar changelog
+      run: npm run release
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Extraer cambios para el cuerpo del release
+      id: extraer_cambios
+      run: |
+        echo "::set-output name=CHANGELOG::$(sed -n "/^## $(node -p "require('./package.json').version")/,/^## /p" CHANGELOG.md | head -n -1)"
+
+    - name: Subir cambios a la rama principal
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
+
+    - name: Archive production artifacts
+      run: |
+        tar -czvf issue-manager-action.tar.gz -C dist .
+
+    - name: Añadir la versión
+      id: obtener_version
+      run: echo "::set-output name=VERSION::$(node -p "require('./package.json').version")"
+
+    - name: Crear Release
+      id: crear_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ steps.obtener_version.outputs.VERSION }}
+        release_name: Versión v${{ steps.obtener_version.outputs.VERSION }}
+        body: |
+          Release automático de la versión v${{ steps.obtener_version.outputs.VERSION }}
+
+          Cambios:
+          ${{ steps.extraer_cambios.outputs.CHANGELOG }}
+        draft: false
+        prerelease: false
+
+    - name: Subir el Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.crear_release.outputs.upload_url }}
+        asset_path: ./issue-manager-action.tar.gz
+        asset_name: issue-manager-action.tar.gz
+        asset_content_type: application/gzip

@@ -1,7 +1,7 @@
 const axios = require('axios');
 const yaml = require('js-yaml');
 const config = require('../config');
-const { generateComment } = require('./comment');
+const { generateComment } = require('../message');
 
 async function fetchTemplate() {
     try {

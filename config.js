@@ -7,6 +7,7 @@ module.exports = {
     templateName: core.getInput('templateName'),
     issuePrefix: core.getInput('issuePrefix'),
     gifURL: core.getInput('gifURL'),
+    useGif: core.getInput('useGif'),
 
     get issueTemplateURL() {
         return `https://github.com/${this.org}/${this.repo}/blob/${this.branch}/.github/ISSUE_TEMPLATE/${this.templateName}`;

@@ -1,4 +1,4 @@
-const config = require('../config');
+const config = require('./config');
 
 function generateComment(totalTasksUpdated) {
     const commentBody = `¡Hola! Hemos hecho algunas actualizaciones a este Issue:

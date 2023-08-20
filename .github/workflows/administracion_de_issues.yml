@@ -23,14 +23,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
       - name: Actualizar GH Issues
-        uses: totallynotdavid/Issue-Manager-Action@latest
+        uses: totallynotdavid/Issue-Manager-Action@v3.4.0
         with:
           org: 'totallynotdavid'
           repo: 'Issue-Manager-Action'
           branch: 'master'
-          template_name: 'mock_template.yml'
-          issue_prefix: '[📚]:'
-          gif_url: 'https://media.tenor.com/t8ZbssN1A9kAAAAd/momo-twice.gif'
+          templateName: 'mock_template.yml'
+          issuePrefix: '[📚]:'
+          gifURL: 'https://media.tenor.com/t8ZbssN1A9kAAAAd/momo-twice.gif'
+          useGif: 'true'
         env:
           ISSUE_TOKEN: ${{ secrets.ISSUE_TOKEN }}
