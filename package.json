@@ -1,13 +1,13 @@
 {
   "name": "issue-manager-action",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A GitHub Action to manage issues in the CAE-Física repository",
   "main": "manage-issues.js",
   "scripts": {
     "start": "node main.js",
     "clean": "shx rm -rf node_modules package-lock.json",
-    "lint": "eslint --ext .js main.js components/ tests/",
-    "lint:fix": "eslint --fix --ext .js main.js components/ tests/",
+    "lint": "eslint --ext .js main.js components/ tests/ test-data/",
+    "lint:fix": "eslint --fix --ext .js main.js components/ tests/ test-data/",
     "dist": "ncc build main.js --license licenses.txt",
     "test": "jest"
   },
