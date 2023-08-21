@@ -8,7 +8,7 @@ function generateComment(totalTasksUpdated) {
 
 Revisa la nueva plantilla [aquí](${config.issueTemplateURL}).`;
 
-    const gifMarkup = (config.useGif && config.gifURL) ? `\n<img src="${config.gifURL}" height="250"/>` : '';
+    const gifMarkup = (config.useGif && config.gifURL) ? `\n\n<img src="${config.gifURL}" height="250"/>` : '';
 
     return commentBody + gifMarkup;
 }
