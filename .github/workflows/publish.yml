@@ -45,7 +45,9 @@ jobs:
     - name: Extraer cambios para el cuerpo del release
       id: extraer_cambios
       run: |
-        echo "::set-output name=CHANGELOG::$(sed -n "/^## $(node -p "require('./package.json').version")/,/^## /p" CHANGELOG.md | head -n -1)"
+        set -e
+        CHANGELOG_CONTENT=$(sed -n "/^## $(node -p "require('./package.json').version")/,/^## /p" CHANGELOG.md | head -n -1)
+        echo "::set-output name=CHANGELOG::$CHANGELOG_CONTENT"
 
     - name: Subir cambios a la rama principal
       uses: ad-m/github-push-action@master
@@ -76,6 +78,9 @@ jobs:
           ${{ steps.extraer_cambios.outputs.CHANGELOG }}
         draft: false
         prerelease: false
+
+    - name: CHANGELOG output
+      run: echo "${{ steps.extraer_cambios.outputs.CHANGELOG }}"
 
     - name: Subir el Release
       uses: actions/upload-release-asset@v1
