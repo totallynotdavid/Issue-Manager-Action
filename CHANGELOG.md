@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.7.2](https://github.com/totallynotdavid/Issue-Manager-Action/compare/v3.7.0...v3.7.2) (2023-08-21)
+
+
+### Bug Fixes
+
+* :ambulance: Publish changelog on the release description ([64dcb26](https://github.com/totallynotdavid/Issue-Manager-Action/commit/64dcb268ae740da6d8f1e6088a720de78c285397))
+
 ### [3.7.1](https://github.com/totallynotdavid/Issue-Manager-Action/compare/v3.7.0...v3.7.1) (2023-08-21)
 
 
