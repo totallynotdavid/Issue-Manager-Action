@@ -1,6 +1,6 @@
 {
   "name": "issue-manager-action",
-  "version": "3.6.0",
+  "version": "3.7.0",
   "description": "A GitHub Action to manage issues in the CAE-Física repository",
   "main": "manage-issues.js",
   "scripts": {
