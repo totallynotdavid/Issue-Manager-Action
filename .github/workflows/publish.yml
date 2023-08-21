@@ -44,10 +44,11 @@ jobs:
 
     - name: Extraer cambios para el cuerpo del release
       id: extraer_cambios
+      working-directory: ${{ github.workspace }}
       run: |
         set -e
         CHANGELOG_CONTENT=$(sed -n "/^## $(node -p "require('./package.json').version")/,/^## /p" CHANGELOG.md | head -n -1)
-        echo "::set-output name=CHANGELOG::$CHANGELOG_CONTENT"
+        echo "CHANGELOG=$CHANGELOG_CONTENT" >> $GITHUB_ENV
 
     - name: Subir cambios a la rama principal
       uses: ad-m/github-push-action@master
