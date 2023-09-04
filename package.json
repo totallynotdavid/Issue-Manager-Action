@@ -34,7 +34,7 @@
     "js-yaml": "^4.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.11",
+    "@babel/core": "^7.22.15",
     "@babel/preset-env": "^7.22.10",
     "@jest/globals": "^29.6.3",
     "@vercel/ncc": "^0.36.1",
