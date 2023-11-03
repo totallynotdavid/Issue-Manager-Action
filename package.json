@@ -29,7 +29,7 @@
   "dependencies": {
     "@actions/core": "^1.10.0",
     "@octokit/auth-token": "^4.0.0",
-    "@octokit/rest": "^20.0.1",
+    "@octokit/rest": "^20.0.2",
     "axios": "^1.6.0",
     "js-yaml": "^4.1.0"
   },
